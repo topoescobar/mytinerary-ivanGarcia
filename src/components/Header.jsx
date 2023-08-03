@@ -1,5 +1,5 @@
 import { GlobalOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons'
-import { Button, Layout, Menu } from 'antd'
+import { Anchor, Button, Layout, Menu } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 import React from 'react'
 
@@ -22,8 +22,9 @@ const HeaderComp = () => {
     <>
     <Layout>
       <Header style={{ display: 'flex', alignItems: 'center'}} >
-        <h1>My Tinerary</h1>
-
+      <h1>My Tinerary</h1>
+      
+      <div className='nav_menu'>
         <Menu
           theme="dark"
           mode="horizontal"
@@ -33,6 +34,7 @@ const HeaderComp = () => {
       <Button type="primary" icon={<UserOutlined />} >
             Login
       </Button>
+      </div>
 
       </Header>
 
