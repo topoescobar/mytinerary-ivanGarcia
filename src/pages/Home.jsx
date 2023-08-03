@@ -3,13 +3,10 @@ import { Button, Layout } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { Content } from 'antd/es/layout/layout';
 
-const Home = () => {
+const HomePage = () => {
     return (
         <>
             <Layout>
-                <Sider>
-                    <p>Sidebar</p>
-                </Sider>
                 <Content>
                     <div className="card">
                         <Button type='primary' > Button </Button>
@@ -23,4 +20,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default HomePage
