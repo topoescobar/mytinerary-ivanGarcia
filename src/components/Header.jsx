@@ -24,7 +24,7 @@ const HeaderComp = () => {
           <h1>My Tinerary</h1>
 
           <div className='nav_menu'>
-            <Menu mode="horizontal" items={items}/>
+            <Menu mode="horizontal" items={items} />
 
             <Button type="primary" icon={<UserOutlined />} >
               Login

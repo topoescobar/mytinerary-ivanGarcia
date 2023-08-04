@@ -8,10 +8,10 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --colorDark: #1e162c;
-  --colorDarkHover: #2d1c45;
-  --colorBorder: #3c245b;
-  --colorBorderHover: #502c7e;
-  --colorPrimary: #8542dc;
-  --colorPrimaryHover: #a46ae8;
+  --color-dark: #1e162c;
+  --color-darkHover: #2d1c45;
+  --color-secondary: #3c245b;
+  --color-secondaryHover: #502c7e;
+  --color-primary: #8542dc;
+  --color-primaryHover: #a46ae8;
 }
