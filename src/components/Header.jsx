@@ -15,30 +15,24 @@ const HeaderComp = () => {
       key: 'cities',
       icon: <GlobalOutlined />
     }
-
   ]
 
   return (
     <>
-    <Layout>
-      <Header style={{ display: 'flex', alignItems: 'center'}} >
-      <h1>My Tinerary</h1>
-      
-      <div className='nav_menu'>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          items={items}
-        />
-        
-      <Button type="primary" icon={<UserOutlined />} >
-            Login
-      </Button>
-      </div>
+      <Layout>
+        <Header>
+          <h1>My Tinerary</h1>
 
-      </Header>
+          <div className='nav_menu'>
+            <Menu mode="horizontal" items={items}/>
 
-    </Layout>
+            <Button type="primary" icon={<UserOutlined />} >
+              Login
+            </Button>
+          </div>
+
+        </Header>
+      </Layout>
     </>
   )
 }

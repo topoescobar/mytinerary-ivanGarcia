@@ -7,16 +7,12 @@ import HomePage from './pages/Home';
 function App() {
 
   return (
-    <Layout className='main_container'>
-      
-      <Layout className='layout'>
-      <HeaderComp />
+    <Layout theme="dark" id='main_container'>
+ 
+        <HeaderComp />
         <HomePage />
         <FooterComp />
-      </Layout>
-
-
-
+   
     </Layout>
   )
 }

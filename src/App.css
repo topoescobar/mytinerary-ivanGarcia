@@ -1,12 +1,21 @@
-*{
+* {
     font-family: "Segoe UI"
 }
 
-header{
+header {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
-.main_container{
+.ant-layout {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+#main_container {
+    background-image:url('japan.jpg');
+    background-position: center;
+    background-size: cover;
     height: 100vh;
     width: 100vw;
 }
@@ -14,4 +23,8 @@ header{
 .nav_menu {
     display: flex;
     align-items: center;
+}
+
+.ant-menu {
+    background: rgba(0, 0, 0, 0);
 }
