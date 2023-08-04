@@ -6,22 +6,33 @@
 
 .card {
     color: var(--colorBorder) ;
-    max-width: 300px;
-    min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
   
     max-width: 500px;
-    height: 300px;
     padding: 15px;
   
-    border: 1px solid rgba(255, 255, 255, .25);
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.45);
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 14px 8px #3c245bde;
   
     backdrop-filter: blur(15px);
+}
+
+.imgContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+img {
+    height: 10rem;
+
 }
 
 h2 {
