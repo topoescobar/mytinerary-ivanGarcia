@@ -1,23 +1,15 @@
 import React from "react"
-import { Button, Layout } from "antd"
-import Sider from "antd/es/layout/Sider"
-import { Content } from "antd/es/layout/layout"
 import Card from "../components/Card"
-import HeaderComp from "../components/Header"
-import FooterComp from "../components/Footer"
 import CarouselComp from "../components/Carousel"
+import MainLayout from "../layouts/MainLayout"
 
 const HomePage = () => {
   return (
     <>
-      <HeaderComp />
-      
-      <Content>
+      <MainLayout>
         <Card />
         <CarouselComp />
-      </Content>
-
-      <FooterComp />
+      </MainLayout>
     </>
   )
 }
