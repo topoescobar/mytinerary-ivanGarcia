@@ -14,6 +14,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --color-bg:#001529;
   --color-dark: #1e162c;
   --color-darkHover: #2d1c45;
   --color-secondary: #3c245b;

@@ -1,3 +1,15 @@
 h1 {
   font-family: backsoda;
 }
+
+.sideMenu {
+  position: sticky;
+  top: 2rem;
+  z-index: 10;
+  margin-bottom: -10rem;
+  width: fit-content;
+  background: #001529b6;
+  padding: 10px;
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+}
