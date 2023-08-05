@@ -1,0 +1,26 @@
+.carrouselContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.carouselContent {
+    margin: 0px;
+    height: 220px;
+    color: var(--color-primary);
+    line-height: 210px;
+    text-align: center;
+    border: solid;
+    background-color: rgba(240, 248, 255, 0.664);
+}
+
+.anticon {
+    font-size: 1.5rem;
+}
+
+.bulletContainer {
+    display: flex;
+    margin-top: -2rem;
+    justify-content: center;
+}

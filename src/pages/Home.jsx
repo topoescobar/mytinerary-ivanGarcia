@@ -5,17 +5,17 @@ import { Content } from "antd/es/layout/layout"
 import Card from "../components/Card"
 import HeaderComp from "../components/Header"
 import FooterComp from "../components/Footer"
+import CarouselComp from "../components/Carousel"
 
 const HomePage = () => {
   return (
     <>
       <HeaderComp />
-
-      <Layout>
-        <Content>
-          <Card></Card>
-        </Content>
-      </Layout>
+      
+      <Content>
+        <Card />
+        <CarouselComp />
+      </Content>
 
       <FooterComp />
     </>
