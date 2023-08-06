@@ -3,8 +3,9 @@ h1 {
 }
 
 .sideMenu {
+  display: flex;
   position: sticky;
-  top: 2rem;
+  top: 0rem;
   z-index: 10;
   margin-bottom: -10rem;
   width: fit-content;
@@ -12,4 +13,16 @@ h1 {
   padding: 10px;
   border-radius: 25px;
   backdrop-filter: blur(15px);
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImg{
+  height: 10rem;
+}
+
+.navIcon{
+  height: 4rem;
 }

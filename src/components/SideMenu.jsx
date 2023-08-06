@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
-import {
-  AppstoreOutlined,
-  ContainerOutlined,
-  DesktopOutlined,
-  MailOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-} from '@ant-design/icons'
 import { Button, Menu } from 'antd'
+import { ContainerOutlined, DesktopOutlined, MailOutlined,
+   MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined } from '@ant-design/icons'
+
+
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -18,6 +13,7 @@ function getItem(label, key, icon, children, type) {
     type,
   }
 }
+
 const items = [
   getItem('Option 1', '1', <PieChartOutlined />),
   getItem('Option 2', '2', <DesktopOutlined />),
@@ -29,12 +25,12 @@ const items = [
   ]),
 ]
 
-
 const SideMenu = () => {
   const [collapsed, setCollapsed] = useState(true)
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }
+
   return (
     <div className='sideMenu'>
       <Button
@@ -44,15 +40,15 @@ const SideMenu = () => {
           marginBottom: 16,
         }}
       >
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        {collapsed ?  <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       <Menu
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
+        defaultSelectedKeys={[]}
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
         items={items}
+        
       />
     </div>
   )

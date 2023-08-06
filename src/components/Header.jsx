@@ -5,14 +5,15 @@ import Link from 'antd/es/typography/Link'
 import React from 'react'
 
 const HeaderComp = () => {
-  const items = [
+  const menuItems = [
     {
       label: 'Home',
       key: 'home',
       icon: <HomeOutlined />
     },
     {
-      label: 'Cities',
+      label: (<a href="" target="_blank" rel="noopener noreferrer">
+        Cities </a>),
       key: 'cities',
       icon: <GlobalOutlined />
     }
@@ -23,13 +24,16 @@ const HeaderComp = () => {
       <Layout>
         <Header>
           <Link>
-            <h1>My Tinerary</h1>
+            <div className='containerFlex'>
+              <img src="/travel-color.svg" className='navIcon' />
+              <h1>My Tinerary</h1>
+            </div>
           </Link>
 
-          <div className='nav_menu'>
-            <Menu mode="horizontal" items={items} />
+          <div className='containerFlex'>
+            <Menu mode="horizontal" items={menuItems} />
 
-            <Button type="primary" icon={<UserOutlined />} >
+            <Button className='loginBtn' type='primary' icon={<UserOutlined />} >
               Login
             </Button>
           </div>

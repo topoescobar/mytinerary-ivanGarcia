@@ -36,7 +36,7 @@ const CarouselComp = () => {
         <Col xs={24} sm={12}>
           <div className='carouselContent'>
             <LeftCircleFilled onClick={prev} />
-            <img src={places[currentIndex].imgUrl} alt={places[currentIndex].alt} />
+            <img src={places[currentIndex].imgUrl} alt={places[currentIndex].alt} className='carouselImg' />
             <RightCircleFilled onClick={next} />
           </div>
         </Col>
@@ -46,7 +46,7 @@ const CarouselComp = () => {
           <div className='bulletContainer'>
             {
               places.map((item) => {
-                if ((item.id-1) === currentIndex)
+                if ((item.id - 1) === currentIndex)
                   return (
                     <Button
                       type='primary'
@@ -60,7 +60,7 @@ const CarouselComp = () => {
                     type='dashed'
                     shape='circle'
                     size='small'
-                    onClick={() => setCurrentIndex(item.id-1)}>
+                    onClick={() => setCurrentIndex(item.id - 1)}>
                     {item.id}
                   </Button>
                 )

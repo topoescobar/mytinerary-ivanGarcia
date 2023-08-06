@@ -7,7 +7,7 @@ const Card = () => {
   const rowSpacing = { xs: 1, sm: 1, md: 6 }
 
   return (
-    <Layout className="cardLayout">
+    <Layout className="containerFlex">
       <div className="card">
         <Row gutter={[columnSpacing, rowSpacing]}>
           <Col xs={24} sm={12}>
@@ -21,7 +21,7 @@ const Card = () => {
           </Col>
           <Col xs={24} sm={12}>
             <div className="imgContainer">
-              <img src="/mountains.png" alt="mountains" />
+              <img src="/mountains.png" alt="mountains" className='heroImg'/>
             </div>
           </Col>
         </Row>
