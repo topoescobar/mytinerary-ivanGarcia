@@ -11,7 +11,8 @@ const Card = () => {
       <div className="card">
         <Row gutter={[columnSpacing, rowSpacing]}>
           <Col xs={24} sm={12}>
-            <h2>Find the perfect detination</h2>
+            <h2 className='appName'>MyTinerary</h2>
+            <p>Find your perfect trip, designed by insiders who know and love their cities!</p>
             <p>
               Our app will help you find the perfect path for your next trip.
               With an easy-to-use interface and a host of itinerary options,

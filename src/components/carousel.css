@@ -1,18 +1,15 @@
-.carrouselContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+.carouselTitle {
+    color: antiquewhite;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 600;
 }
 
 .carouselContent {
     margin: 0px;
-    height: 220px;
     color: var(--color-primary);
-    line-height: 210px;
     text-align: center;
-    border: solid;
-    background-color: rgba(240, 248, 255, 0.664);
+    border: solid 1px;
 }
 
 .anticon {
@@ -21,7 +18,7 @@
 
 .bulletContainer {
     display: flex;
-    margin-top: -2rem;
+    margin-top: -1.5rem;
     justify-content: center;
 }
 

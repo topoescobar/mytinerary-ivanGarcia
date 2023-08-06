@@ -1,4 +1,4 @@
-h1 {
+.appName {
   font-family: backsoda;
 }
 
@@ -25,4 +25,15 @@ h1 {
 
 .navIcon{
   height: 4rem;
+}
+
+.ciao-frames {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
+  justify-content: space-evenly;
+  width: 80%;
+  max-width: 800px;
+  height: 400px;
 }

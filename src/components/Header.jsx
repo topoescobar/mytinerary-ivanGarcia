@@ -26,7 +26,7 @@ const HeaderComp = () => {
           <Link>
             <div className='containerFlex'>
               <img src="/travel-color.svg" className='navIcon' />
-              <h1>My Tinerary</h1>
+              <h1 className='appName'>My Tinerary</h1>
             </div>
           </Link>
 
