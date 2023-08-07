@@ -25,3 +25,7 @@
 .carouselImg{
     height: 10rem;
 }
+
+.groupImg{
+    max-width: 600px;
+}

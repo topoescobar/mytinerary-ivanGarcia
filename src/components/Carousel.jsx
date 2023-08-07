@@ -1,4 +1,4 @@
-import { Button, Col, Collapse, Layout, Row } from 'antd'
+import { Button, Col, Collapse, Image, Layout, Row } from 'antd'
 import React, { useState } from 'react'
 import './carousel.css'
 import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
@@ -26,16 +26,26 @@ const CarouselComp = ({ images, title }) => {
 
   return (
     <div className='carouselContent'>
+      <h3 className='carouselTitle'>{title}</h3>
       <Row justify="center">
-        <h3 className='carouselTitle'>{title}</h3>
-        <div className='groupImg'>
- {/*          {
-            images.map((img) => {
-              setImgIndex(imgIndex+1)
-              ( imgIndex < 5 ? <img src={img.imgUrl} className='carouselImg' /> : null)
+        <Col xs={0} sm={2} md={4} lg={6}> </Col>
+        <Col sm={20}>
+          <Row justify='space-around'>
+          {
+            images.slice(0, 4).map((img) => {
+              return (
+
+                <Col xs={24} sm={12} md={10} lg={10}>
+                  <Image width={250} src={img.imgUrl} alt={img.alt} />
+                  <p>{img.title} - {img.description}</p>
+                </Col>
+
+              )
             })
-          } */}
-        </div>
+          }
+          </Row>
+        </Col>
+        <Col xs={0} sm={2} md={4} lg={6}> </Col>
       </Row>
       <Row justify="center">
         <Col xs={24} sm={12}>
