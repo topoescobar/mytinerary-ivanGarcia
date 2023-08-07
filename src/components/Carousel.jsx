@@ -2,11 +2,15 @@ import { Button, Col, Collapse, Image, Layout, Row } from 'antd'
 import React, { useState } from 'react'
 import './carousel.css'
 import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
+import { set } from 'lodash'
 
 const CarouselComp = ({ images, title }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [imgIndex, setImgIndex] = useState(0)
+  const [itemsNumber, setItemsNum] = useState([0,4])
+  const [initialItem, finalItem] = itemsNumber;
+
 
   const prev = () => {
     if (currentIndex > 0) {
@@ -24,33 +28,49 @@ const CarouselComp = ({ images, title }) => {
     }
   }
 
+  const goNext = () => {
+    if(finalItem+4 > images.length ) {
+      setItemsNum([0,4])
+    } else {
+      setItemsNum([initialItem+4, finalItem+4])
+    }
+    console.log(itemsNumber);
+  }
+
+  const goPrev = () =>{
+    if (initialItem < 1 ) {
+      setItemsNum([images.length-4, images.length])
+    } else {
+      setItemsNum([initialItem-4, finalItem-4])
+    }
+    console.log(itemsNumber);
+
+  }
+
   return (
     <div className='carouselContent'>
       <h3 className='carouselTitle'>{title}</h3>
-      <Row justify="center">
-        <Col xs={0} sm={2} md={4} lg={6}> </Col>
-        <Col sm={20}>
-          <Row justify='space-around'>
+      <div className='containerFlex'>
+      <LeftCircleFilled onClick={goPrev}/>
+        <div className='gridContainer'>
           {
-            images.slice(0, 4).map((img) => {
+            images.slice(initialItem,finalItem).map((img) => {
               return (
-
-                <Col xs={24} sm={12} md={10} lg={10}>
+                <div key={img.id}>
                   <Image width={250} src={img.imgUrl} alt={img.alt} />
                   <p>{img.title} - {img.description}</p>
-                </Col>
-
+                </div>
               )
             })
           }
-          </Row>
-        </Col>
-        <Col xs={0} sm={2} md={4} lg={6}> </Col>
-      </Row>
+        </div>
+      <RightCircleFilled onClick={goNext} />
+      </div>
+
+
       <Row justify="center">
         <Col xs={24} sm={12}>
           <LeftCircleFilled onClick={prev} />
-
           <img src={images[currentIndex].imgUrl} alt={images[currentIndex].alt} className='carouselImg' />
           <RightCircleFilled onClick={next} />
         </Col>
@@ -63,6 +83,7 @@ const CarouselComp = ({ images, title }) => {
                 if ((item.id - 1) === currentIndex)
                   return (
                     <Button
+                    key={item.id}
                       type='primary'
                       shape='circle'
                       size='small'>
@@ -71,6 +92,7 @@ const CarouselComp = ({ images, title }) => {
                   )
                 else return (
                   <Button
+                  key={item.id}
                     type='dashed'
                     shape='circle'
                     size='small'
