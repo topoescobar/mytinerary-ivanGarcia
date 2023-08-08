@@ -13,7 +13,7 @@ const Card = () => {
           <Col xs={24} sm={12}>
             <h2 className='appName'>MyTinerary</h2>
             <p>Find your perfect trip, designed by insiders who know and love their cities!</p>
-            <p>
+            <p className='description'>
               Our app will help you find the perfect path for your next trip.
               With an easy-to-use interface and a host of itinerary options,
               planning your next trip has never been easier.
@@ -22,7 +22,7 @@ const Card = () => {
           </Col>
           <Col xs={24} sm={12}>
             <div className="imgContainer">
-              <img src="/mountains.png" alt="mountains" className='heroImg'/>
+              <img src="/travel-color.svg" alt="mountains" className='heroImg'/>
             </div>
           </Col>
         </Row>

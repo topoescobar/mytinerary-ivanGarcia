@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import './carousel.css'
 import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
 import { set } from 'lodash'
+import Prueba from './Prueba'
 
 const CarouselComp = ({ images, title }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [imgIndex, setImgIndex] = useState(0)
-  const [itemsNumber, setItemsNum] = useState([0,4])
-  const [initialItem, finalItem] = itemsNumber;
+  const [itemsNumber, setItemsNum] = useState([0, 4])
+  const [initialItem, finalItem] = itemsNumber
 
 
   const prev = () => {
@@ -29,21 +29,21 @@ const CarouselComp = ({ images, title }) => {
   }
 
   const goNext = () => {
-    if(finalItem+4 > images.length ) {
-      setItemsNum([0,4])
+    if (finalItem + 4 > images.length) {
+      setItemsNum([0, 4])
     } else {
-      setItemsNum([initialItem+4, finalItem+4])
+      setItemsNum([initialItem + 4, finalItem + 4])
     }
-    console.log(itemsNumber);
+    console.log(itemsNumber)
   }
 
-  const goPrev = () =>{
-    if (initialItem < 1 ) {
-      setItemsNum([images.length-4, images.length])
+  const goPrev = () => {
+    if (initialItem < 1) {
+      setItemsNum([images.length - 4, images.length])
     } else {
-      setItemsNum([initialItem-4, finalItem-4])
+      setItemsNum([initialItem - 4, finalItem - 4])
     }
-    console.log(itemsNumber);
+    console.log(itemsNumber)
 
   }
 
@@ -51,21 +51,55 @@ const CarouselComp = ({ images, title }) => {
     <div className='carouselContent'>
       <h3 className='carouselTitle'>{title}</h3>
       <div className='containerFlex'>
-      <LeftCircleFilled onClick={goPrev}/>
+        <LeftCircleFilled onClick={goPrev} />
         <div className='gridContainer'>
           {
-            images.slice(initialItem,finalItem).map((img) => {
+            images.slice(initialItem, finalItem).map((img) => {
               return (
-                <div key={img.id}>
+                <div className='carouselElement' key={img.id}>
                   <Image width={250} src={img.imgUrl} alt={img.alt} />
-                  <p>{img.title} - {img.description}</p>
+                  <p className='carouselText'>{img.title} - {img.description}</p>
                 </div>
               )
             })
           }
         </div>
-      <RightCircleFilled onClick={goNext} />
+        <RightCircleFilled onClick={goNext} />
       </div>
+{/* 
+
+      <Row justify="center">
+        <Col xs={24} sm={12}>
+          <div className='bulletContainer'>
+            {
+              images.map((item) => {
+                if (initialItem === )
+                  return (
+                    <Button
+                      key={item.id}
+                      type='primary'
+                      shape='circle'
+                      size='small'>
+                      {item.id}
+                    </Button>
+                  )
+                else return (
+                  <Button
+                    key={item.id}
+                    type='dashed'
+                    shape='circle'
+                    size='small'
+                    onClick={() => setCurrentIndex(item.id - 1)}>
+                    {item.id}
+                  </Button>
+                )
+              })
+            }
+          </div>
+
+        </Col>
+      </Row>
+ */}
 
 
       <Row justify="center">
@@ -83,7 +117,7 @@ const CarouselComp = ({ images, title }) => {
                 if ((item.id - 1) === currentIndex)
                   return (
                     <Button
-                    key={item.id}
+                      key={item.id}
                       type='primary'
                       shape='circle'
                       size='small'>
@@ -92,7 +126,7 @@ const CarouselComp = ({ images, title }) => {
                   )
                 else return (
                   <Button
-                  key={item.id}
+                    key={item.id}
                     type='dashed'
                     shape='circle'
                     size='small'
@@ -106,8 +140,15 @@ const CarouselComp = ({ images, title }) => {
 
         </Col>
       </Row>
+
+  
+
+      
     </div>
   )
 }
 
 export default CarouselComp
+
+const arrayOriginal = [0, 1, 2, 3, 4, 5, 6, 7,8,9]
+const arrayModificado = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9]]

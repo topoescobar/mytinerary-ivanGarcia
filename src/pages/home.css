@@ -9,7 +9,7 @@
   z-index: 10;
   margin-bottom: -10rem;
   width: fit-content;
-  background: #001529b6;
+  background: var(--color-bgTransp);
   padding: 10px;
   border-radius: 25px;
   backdrop-filter: blur(15px);

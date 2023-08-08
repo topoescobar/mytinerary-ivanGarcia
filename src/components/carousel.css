@@ -34,6 +34,18 @@
     display: grid;
     grid-template-rows: 1fr ;
     grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    
+    gap: 5px;
+    background-color: var(--color-dark);
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+.carouselText{
+    font-weight: 600;
+    color: var(--color-primary);
+    background-color: var(--color-bgTransp);
+}
+
+.carouselElement{
+    height: 9rem;
 }
