@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import './carousel.css'
 import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
 import { set } from 'lodash'
-import Prueba from './Prueba'
 
 const CarouselComp = ({ images, title }) => {
 
@@ -47,6 +46,16 @@ const CarouselComp = ({ images, title }) => {
 
   }
 
+  const changeSlide = (id) => {
+    if(id === 2 || id === 10 ){
+      setItemsNum([4,8])
+    } else if ( id === 3 || id === 7)  {
+      setItemsNum([8,12])
+    } else if (id === 5 || id === 9) {
+      setItemsNum([0,4])
+    }
+  }
+
   return (
     <div className='carouselContent'>
       <h3 className='carouselTitle'>{title}</h3>
@@ -66,31 +75,22 @@ const CarouselComp = ({ images, title }) => {
         </div>
         <RightCircleFilled onClick={goNext} />
       </div>
-{/* 
+
 
       <Row justify="center">
         <Col xs={24} sm={12}>
           <div className='bulletContainer'>
             {
-              images.map((item) => {
-                if (initialItem === )
-                  return (
-                    <Button
-                      key={item.id}
-                      type='primary'
-                      shape='circle'
-                      size='small'>
-                      {item.id}
-                    </Button>
-                  )
-                else return (
+              images.slice(initialItem, finalItem-1).map((item) => {
+              return (
                   <Button
+                    onClick={() => changeSlide(item.id)}
                     key={item.id}
-                    type='dashed'
+                    type='primary'
                     shape='circle'
                     size='small'
-                    onClick={() => setCurrentIndex(item.id - 1)}>
-                    {item.id}
+                    >
+                    
                   </Button>
                 )
               })
@@ -99,7 +99,7 @@ const CarouselComp = ({ images, title }) => {
 
         </Col>
       </Row>
- */}
+ 
 
 
       <Row justify="center">
@@ -114,7 +114,7 @@ const CarouselComp = ({ images, title }) => {
           <div className='bulletContainer'>
             {
               images.map((item) => {
-                if ((item.id - 1) === currentIndex)
+                if (item.id - 1 === currentIndex)
                   return (
                     <Button
                       key={item.id}
