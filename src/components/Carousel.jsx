@@ -1,107 +1,116 @@
 import { Button, Col, Collapse, Image, Layout, Row } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './carousel.css'
 import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
 import { set } from 'lodash'
 
 const CarouselComp = ({ images, title }) => {
 
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(1)
   const [itemsNumber, setItemsNum] = useState([0, 4])
   const [initialItem, finalItem] = itemsNumber
 
+  const [subArrays, setSubArrays] = useState([])
 
-  const prev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
-    } else {
-      setCurrentIndex(images.length - 1)
-    }
-  }
+  const subArraySize = 4
+  // const subArrays = []
 
-  const next = () => {
-    if (currentIndex < images.length - 1) {
-      setCurrentIndex(currentIndex + 1)
-    } else {
-      setCurrentIndex(0)
+  useEffect(() => {
+    for (let i = 0; i < images.length; i += subArraySize) {
+      let subArray = images.slice(i, i + subArraySize)
+      // subArrays.push(subArray)
+      setSubArrays(...subArrays, subArray)
     }
-  }
+  }, [])
+  console.log(subArrays);
+ 
 
   const goNext = () => {
-    if (finalItem + 4 > images.length) {
+    if (finalItem + subArraySize > images.length) {
       setItemsNum([0, 4])
+      setCurrentIndex(1)
     } else {
-      setItemsNum([initialItem + 4, finalItem + 4])
+      setItemsNum([initialItem + subArraySize, finalItem + subArraySize])
+      setCurrentIndex(currentIndex + 1)
     }
-    console.log(itemsNumber)
   }
 
   const goPrev = () => {
     if (initialItem < 1) {
-      setItemsNum([images.length - 4, images.length])
+      setItemsNum([images.length - subArraySize, images.length])
+      setCurrentIndex(subArrays.length)
     } else {
-      setItemsNum([initialItem - 4, finalItem - 4])
-    }
-    console.log(itemsNumber)
-
-  }
-
-  const changeSlide = (id) => {
-    if(id === 2 || id === 10 ){
-      setItemsNum([4,8])
-    } else if ( id === 3 || id === 7)  {
-      setItemsNum([8,12])
-    } else if (id === 5 || id === 9) {
-      setItemsNum([0,4])
+      setItemsNum([initialItem - subArraySize, finalItem - subArraySize])
+      setCurrentIndex(currentIndex - 1)
     }
   }
 
-  return (
-    <div className='carouselContent'>
-      <h3 className='carouselTitle'>{title}</h3>
-      <div className='containerFlex'>
-        <LeftCircleFilled onClick={goPrev} />
-        <div className='gridContainer'>
-          {
-            images.slice(initialItem, finalItem).map((img) => {
-              return (
-                <div className='carouselElement' key={img.id}>
-                  <Image width={250} src={img.imgUrl} alt={img.alt} />
-                  <p className='carouselText'>{img.title} - {img.description}</p>
-                </div>
-              )
-            })
-          }
-        </div>
-        <RightCircleFilled onClick={goNext} />
-      </div>
+  console.log('currentIndex', currentIndex)
 
+  const changeSlide = (indx) => {
+      setItemsNum([subArraySize * indx - subArraySize, subArraySize * indx])
+      setCurrentIndex(indx)
+    }
 
-      <Row justify="center">
-        <Col xs={24} sm={12}>
-          <div className='bulletContainer'>
+    return (
+      <div className='carouselContent'>
+        <h3 className='carouselTitle'>{title}</h3>
+        <div className='containerFlex'>
+          <LeftCircleFilled onClick={goPrev} />
+          <div className='gridContainer'>
+
             {
-              images.slice(initialItem, finalItem-1).map((item) => {
-              return (
-                  <Button
-                    onClick={() => changeSlide(item.id)}
-                    key={item.id}
-                    type='primary'
-                    shape='circle'
-                    size='small'
-                    >
-                    
-                  </Button>
+              images.slice(initialItem, finalItem).map((img) => {
+                return (
+                  <div className='carouselElement' key={img.id}>
+                    <Image width={250} src={img.imgUrl} alt={img.alt} />
+                    <p className='carouselText'>{img.title} - {img.description}</p>
+                  </div>
                 )
               })
             }
+
           </div>
-
-        </Col>
-      </Row>
- 
+          <RightCircleFilled onClick={goNext} />
+        </div>
 
 
+        <Row justify="center">
+          <Col xs={24} sm={12}>
+            <div className='bulletContainer'>
+              {
+                Array(images.length/subArraySize).fill(0).map((item, index) => {
+                  if (index + 1 === currentIndex)
+                    return (
+                      <Button
+                        key={index}
+                        type='primary'
+                        shape='circle'
+                        size='small'
+                      >
+                        {index + 1}
+                      </Button>
+                    )
+                  else return (
+                    <Button
+                      key={index}
+                      type='primary'
+                      shape='dashed'
+                      size='small'
+                      onClick={() => changeSlide(index + 1)}
+                    >
+                      {index + 1}
+                    </Button>
+                  )
+                })
+              }
+            </div>
+
+          </Col>
+        </Row>
+
+
+        {/* 
       <Row justify="center">
         <Col xs={24} sm={12}>
           <LeftCircleFilled onClick={prev} />
@@ -141,14 +150,14 @@ const CarouselComp = ({ images, title }) => {
         </Col>
       </Row>
 
-  
+   */}
 
-      
-    </div>
-  )
-}
 
-export default CarouselComp
+      </div>
+    )
+  }
 
-const arrayOriginal = [0, 1, 2, 3, 4, 5, 6, 7,8,9]
-const arrayModificado = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9]]
+  export default CarouselComp
+
+  const arrayOriginal = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const arrayModificado = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9]]
