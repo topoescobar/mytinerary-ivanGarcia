@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Button, Menu } from 'antd'
-import { ContainerOutlined, DesktopOutlined, MailOutlined,
-   MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined } from '@ant-design/icons'
+import { Button, Col, Menu, Row } from 'antd'
+import {
+  ContainerOutlined, DesktopOutlined, MailOutlined,
+  MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined
+} from '@ant-design/icons'
 
 
 function getItem(label, key, icon, children, type) {
@@ -32,25 +34,32 @@ const SideMenu = () => {
   }
 
   return (
-    <div className='sideMenu'>
-      <Button
-        type="primary"
-        onClick={toggleCollapsed}
-        style={{
-          marginBottom: 16,
-        }}
-      >
-        {collapsed ?  <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </Button>
-      <Menu
-        defaultSelectedKeys={[]}
-        mode="inline"
-        theme="dark"
-        inlineCollapsed={collapsed}
-        items={items}
-        
-      />
-    </div>
+
+    <Row className='sideMenu'>
+      <Col xs={24} sm={24} md={0} lg={0}>
+        <div >
+          <Button
+            type="primary"
+            onClick={toggleCollapsed}
+            style={{
+              marginBottom: 16,
+            }}
+          >
+            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          </Button>
+          <Menu
+            defaultSelectedKeys={[]}
+            mode="inline"
+            theme="dark"
+            inlineCollapsed={collapsed}
+            items={items}
+
+          />
+        </div>
+      </Col>
+    </Row>
+
+
   )
 }
 export default SideMenu

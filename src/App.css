@@ -10,39 +10,53 @@ header {
 
 h1 {
     font-family: backsoda;
-  }
+}
+
+.containerFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .ant-layout {
     background: rgba(0, 0, 0, 0.1);
-  }
+}
 
 #main_container {
-    background-image:url('japan.jpg');
+    background-image: url('japan.jpg');
     background-position: center;
     background-size: cover;
 
 }
 
-.containerFlex{
-    display: flex;
-    align-items: center;   
-    justify-content: center; 
+.sideMenu {
+    position: absolute;
+    right: 0rem;
+    z-index: 10;
+    width: fit-content;
+    background: var(--color-bgTransp);
+    padding: 10px;
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+
 }
 
 .nav_menu {
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 .ant-menu {
     background: rgba(0, 0, 0, 0);
 }
 
-.loginBtn{
+.loginBtn {
     display: flex;
     font-weight: 600;
 }
 
-.navIcon{
+.navIcon {
     height: 2rem;
 }

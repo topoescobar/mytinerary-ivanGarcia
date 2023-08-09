@@ -8,7 +8,7 @@ const Card = () => {
 
   return (
     <Layout className="containerFlex">
-      <div className="card">
+      <div className="card cardContainer">
         <Row gutter={[columnSpacing, rowSpacing]}>
           <Col xs={24} sm={12}>
             <h2 className='appName'>MyTinerary</h2>

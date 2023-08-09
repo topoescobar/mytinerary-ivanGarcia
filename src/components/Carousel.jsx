@@ -1,4 +1,4 @@
-import { Button, Col, Collapse, Image, Layout, Row } from 'antd'
+import { Button, Col, Image, Row } from 'antd'
 import React, { useEffect, useState } from 'react'
 import './carousel.css'
 import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
@@ -6,25 +6,25 @@ import { set } from 'lodash'
 
 const CarouselComp = ({ images, title }) => {
 
+  //current slide number (set of 4 photos) 
   const [currentIndex, setCurrentIndex] = useState(1)
+  //number of the first and last picture of the slide
   const [itemsNumber, setItemsNum] = useState([0, 4])
-  const [initialItem, finalItem] = itemsNumber
-
+  //array images divided in sub arrays of 4 objects for slides
   const [subArrays, setSubArrays] = useState([])
 
+  const [initialItem, finalItem] = itemsNumber
   const subArraySize = 4
-  // const subArrays = []
 
+  //creation of sub arrays
   useEffect(() => {
     for (let i = 0; i < images.length; i += subArraySize) {
       let subArray = images.slice(i, i + subArraySize)
-      // subArrays.push(subArray)
       setSubArrays(...subArrays, subArray)
     }
   }, [])
-  console.log(subArrays);
- 
 
+  //ARROW buttons: changes the slide index and the selection of the 4 corresponding pictures numbers
   const goNext = () => {
     if (finalItem + subArraySize > images.length) {
       setItemsNum([0, 4])
@@ -38,7 +38,7 @@ const CarouselComp = ({ images, title }) => {
   const goPrev = () => {
     if (initialItem < 1) {
       setItemsNum([images.length - subArraySize, images.length])
-      setCurrentIndex(subArrays.length)
+      setCurrentIndex(subArrays.length - 1)
     } else {
       setItemsNum([initialItem - subArraySize, finalItem - subArraySize])
       setCurrentIndex(currentIndex - 1)
@@ -47,100 +47,59 @@ const CarouselComp = ({ images, title }) => {
 
   console.log('currentIndex', currentIndex)
 
+  //BULLET buttons fn: changes slide index and picture numbers 
   const changeSlide = (indx) => {
-      setItemsNum([subArraySize * indx - subArraySize, subArraySize * indx])
-      setCurrentIndex(indx)
-    }
+    setItemsNum([subArraySize * indx - subArraySize, subArraySize * indx])
+    setCurrentIndex(indx)
+  }
 
-    return (
-      <div className='carouselContent'>
-        <h3 className='carouselTitle'>{title}</h3>
-        <div className='containerFlex'>
-          <LeftCircleFilled onClick={goPrev} />
-          <div className='gridContainer'>
+  return (
+    <div className='carouselContent'>
+      <h3 className='carouselTitle'>{title}</h3>
+      <div className='containerFlex'>
+        <LeftCircleFilled onClick={goPrev} />
+        <div className='gridContainer'>
+          { // show slide (4 pictures)
+            images.slice(initialItem, finalItem).map((img) => {
+              return (
+                <div className='carouselElement' key={img.id}>
+                  <Image width={250} src={img.imgUrl} alt={img.alt} />
+                  <p className='carouselText'> {img.id}- {img.title}, {img.description}</p>
+                </div>
+              )
+            })
+          }
 
-            {
-              images.slice(initialItem, finalItem).map((img) => {
-                return (
-                  <div className='carouselElement' key={img.id}>
-                    <Image width={250} src={img.imgUrl} alt={img.alt} />
-                    <p className='carouselText'>{img.title} - {img.description}</p>
-                  </div>
-                )
-              })
-            }
-
-          </div>
-          <RightCircleFilled onClick={goNext} />
         </div>
+        <RightCircleFilled onClick={goNext} />
+      </div>
 
 
-        <Row justify="center">
-          <Col xs={24} sm={12}>
-            <div className='bulletContainer'>
-              {
-                Array(images.length/subArraySize).fill(0).map((item, index) => {
-                  if (index + 1 === currentIndex)
-                    return (
-                      <Button
-                        key={index}
-                        type='primary'
-                        shape='circle'
-                        size='small'
-                      >
-                        {index + 1}
-                      </Button>
-                    )
-                  else return (
-                    <Button
-                      key={index}
-                      type='primary'
-                      shape='dashed'
-                      size='small'
-                      onClick={() => changeSlide(index + 1)}
-                    >
-                      {index + 1}
-                    </Button>
-                  )
-                })
-              }
-            </div>
-
-          </Col>
-        </Row>
-
-
-        {/* 
-      <Row justify="center">
-        <Col xs={24} sm={12}>
-          <LeftCircleFilled onClick={prev} />
-          <img src={images[currentIndex].imgUrl} alt={images[currentIndex].alt} className='carouselImg' />
-          <RightCircleFilled onClick={next} />
-        </Col>
-      </Row >
       <Row justify="center">
         <Col xs={24} sm={12}>
           <div className='bulletContainer'>
             {
-              images.map((item) => {
-                if (item.id - 1 === currentIndex)
+              Array(images.length / subArraySize).fill(0).map((item, index) => {
+                if (index + 1 === currentIndex)
                   return (
                     <Button
-                      key={item.id}
+                      key={index}
                       type='primary'
                       shape='circle'
-                      size='small'>
-                      {item.id}
+                      size='small'
+                    >
+                      {index + 1}
                     </Button>
                   )
                 else return (
                   <Button
-                    key={item.id}
-                    type='dashed'
-                    shape='circle'
+                    key={index}
+                    type='primary'
+                    shape='dashed'
                     size='small'
-                    onClick={() => setCurrentIndex(item.id - 1)}>
-                    {item.id}
+                    onClick={() => changeSlide(index + 1)}
+                  >
+                    {index + 1}
                   </Button>
                 )
               })
@@ -150,14 +109,8 @@ const CarouselComp = ({ images, title }) => {
         </Col>
       </Row>
 
-   */}
+    </div>
+  )
+}
 
-
-      </div>
-    )
-  }
-
-  export default CarouselComp
-
-  const arrayOriginal = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  const arrayModificado = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9]]
+export default CarouselComp
