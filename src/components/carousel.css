@@ -1,18 +1,24 @@
 .carouselTitle {
     color: antiquewhite;
+    text-align: center;
     font-size: 1.5rem;
     font-style: italic;
     font-weight: 600;
 }
 
 .carouselContent {
-    margin: 0px;
     color: var(--color-primary);
-    text-align: center;
+    background-color: var(--color-dark);
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    border-radius: 20px;
+    padding: 1rem;
+    height: 27rem;
 }
 
 .anticon {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .bulletContainer {
@@ -45,6 +51,21 @@
     background-color: var(--color-bgTransp);
 }
 
-.carouselElement{
-    height: 9rem;
-}
+@media screen and (max-width: 700px) {
+    .gridContainer {
+        display: flex;
+        gap: 2px;
+        background-color: var(--color-dark);
+        padding: 0;
+        border-radius: 2rem;
+        flex-direction: column;
+    }
+
+    .carouselContent{   
+        height: fit-content;
+    }
+
+    .bulletContainer {
+        margin-top: -0.5rem;
+    }
+  }

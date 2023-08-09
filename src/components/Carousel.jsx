@@ -57,6 +57,7 @@ const CarouselComp = ({ images, title }) => {
     <div className='carouselContent'>
       <h3 className='carouselTitle'>{title}</h3>
       <div className='containerFlex'>
+
         <LeftCircleFilled onClick={goPrev} />
         <div className='gridContainer'>
           { // show slide (4 pictures)
@@ -69,11 +70,10 @@ const CarouselComp = ({ images, title }) => {
               )
             })
           }
-
         </div>
         <RightCircleFilled onClick={goNext} />
-      </div>
 
+      </div>
 
       <Row justify="center">
         <Col xs={24} sm={12}>
@@ -86,7 +86,7 @@ const CarouselComp = ({ images, title }) => {
                       key={index}
                       type='primary'
                       shape='circle'
-                      size='small'
+                      size='middle'
                     >
                       {index + 1}
                     </Button>
@@ -96,7 +96,7 @@ const CarouselComp = ({ images, title }) => {
                     key={index}
                     type='primary'
                     shape='dashed'
-                    size='small'
+                    size='middle'
                     onClick={() => changeSlide(index + 1)}
                   >
                     {index + 1}
