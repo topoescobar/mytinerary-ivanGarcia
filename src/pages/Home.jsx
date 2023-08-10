@@ -1,7 +1,7 @@
 import React from "react"
 import Card from "../components/Card"
 import CarouselComp from "../components/Carousel"
-import HeaderAndFooter from "../layouts/HeaderAndFooter"
+import HeaderAndFooter from "../layouts/MainLayout"
 import Layout from 'antd/es/layout/layout'
 import SideMenu from '../components/SideMenu'
 import { Col, Row } from 'antd'
@@ -28,13 +28,11 @@ const carouselName = 'Popular Mytineraries'
 const HomePage = () => {
   return (
     <>
-      <HeaderAndFooter>
         <Layout >
           <SideMenu />
           <Card />
           <CarouselComp images={places} title={carouselName}/>
         </Layout>
-      </HeaderAndFooter>
     </>
   )
 }

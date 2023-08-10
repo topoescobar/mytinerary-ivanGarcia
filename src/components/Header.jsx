@@ -1,19 +1,25 @@
 import { GlobalOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons'
 import { Anchor, Button, Col, Layout, Menu, Row } from 'antd'
 import { Header } from 'antd/es/layout/layout'
-import Link from 'antd/es/typography/Link'
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const HeaderComp = () => {
+
+  const [current, setCurrent] = useState('home');
+  const selectKey = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
+  };
+  
   const menuItems = [
     {
-      label: 'Home',
+      label:  (<Link to={'/'} > Home </Link>),
       key: 'home',
       icon: <HomeOutlined />
     },
     {
-      label: (<a href="" target="_blank" rel="noopener noreferrer">
-        Cities </a>),
+      label: (<Link to={'/cities'} > Cities </Link>),
       key: 'cities',
       icon: <GlobalOutlined />
     }
@@ -22,10 +28,10 @@ const HeaderComp = () => {
   return (
     <>
       < >
-        <Header>
+        <Header className='header'>
           <Row >
             <Col xs={24} sm={24} md={10} lg={10}>
-              <Link>
+              <Link to={'/'}>
                 <div className='containerFlex'>
                   <img src="/travel-white.svg" className='navIcon' />
                   <h1 className='appName'>My Tinerary</h1>
@@ -34,7 +40,7 @@ const HeaderComp = () => {
             </Col>
             <Col xs={0} sm={0} md={14} lg={14}>
               <div className='containerFlex'>
-                <Menu mode="horizontal" items={menuItems} />
+                <Menu mode="horizontal" onClick={selectKey} selectedKeys={[current]} items={menuItems} className='navMenu' />
 
                 <Button className='loginBtn' type='primary' icon={<UserOutlined />} >
                   Login

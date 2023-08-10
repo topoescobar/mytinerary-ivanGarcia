@@ -6,6 +6,10 @@ h1 {
     font-family: backsoda;
 }
 
+.header{
+    height: auto;
+}
+
 .containerFlex {
     display: flex;
     align-items: center;
@@ -36,18 +40,21 @@ h1 {
 
 }
 
-.nav_menu {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
+.navMenu{
+    width: 13rem;
 }
 
 .ant-menu {
     background: rgba(0, 0, 0, 0);
 }
 
+.ant-btn {
+    height: auto;
+}
+ 
 .loginBtn {
     display: flex;
+    align-items: center;
     font-weight: 600;
 }
 

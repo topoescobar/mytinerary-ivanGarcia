@@ -1,10 +1,14 @@
+import { Layout } from 'antd'
 import React from 'react'
+import './cities.css'
 
 const Cities = () => {
   return (
-    <div>
-      <h2> Cities </h2>
+    <Layout>
+      <div className='containerFlex citiesContainer'>
+        <h2> Page under construction </h2>
       </div>
+    </Layout>
   )
 }
 

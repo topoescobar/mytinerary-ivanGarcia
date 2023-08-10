@@ -1,18 +1,16 @@
 import React from 'react'
 import HeaderComp from '../components/Header'
 import FooterComp from '../components/Footer'
+import { Outlet } from 'react-router-dom'
 
-const HeaderAndFooter = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <>
       <HeaderComp />
-        {
-          children
-        }
+      <Outlet />
       <FooterComp />
-
     </>
   )
 }
 
-export default HeaderAndFooter
+export default MainLayout
