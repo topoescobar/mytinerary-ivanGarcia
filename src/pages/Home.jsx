@@ -30,11 +30,9 @@ const HomePage = () => {
     <>
       <HeaderAndFooter>
         <Layout >
-
           <SideMenu />
           <Card />
           <CarouselComp images={places} title={carouselName}/>
-
         </Layout>
       </HeaderAndFooter>
     </>
