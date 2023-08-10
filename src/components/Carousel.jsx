@@ -24,6 +24,18 @@ const CarouselComp = ({ images, title }) => {
     }
   }, [])
 
+  //autoplay
+  useEffect(() => {
+    let intervalID = setInterval(() => {
+      goNext()
+    }, 2000)
+    
+    return () => {      
+      clearInterval(intervalID)
+    }
+
+  }, [itemsNumber])
+
   //ARROW buttons: changes the slide index and the selection of the 4 corresponding pictures numbers
   const goNext = () => {
     if (finalItem + subArraySize > images.length) {
