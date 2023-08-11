@@ -29,7 +29,6 @@ const HomePage = () => {
   return (
     <>
         <Layout >
-          <SideMenu />
           <Card />
           <CarouselComp images={places} title={carouselName}/>
         </Layout>
