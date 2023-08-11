@@ -46,12 +46,6 @@
     transition: 1s;
 }
 
-.carouselText{
-    font-weight: 600;
-    color: var(--color-primary);
-    background-color: var(--color-bgTransp);
-}
-
 @media screen and (max-width: 700px) {
     .gridContainer {
         display: flex;

@@ -81,7 +81,7 @@ const CarouselComp = ({ images, title }) => {
               return (
                 <div className='carouselElement' key={img.id}>
                   <Image width={250} src={img.imgUrl} alt={img.alt} />
-                  <p className='carouselText'> {img.id}- {img.title}, {img.description}</p>
+                  <p className='bgTransp'> {img.id}- {img.title}, {img.description}</p>
                 </div>
               )
             })

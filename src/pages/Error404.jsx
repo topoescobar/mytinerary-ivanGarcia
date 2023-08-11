@@ -1,9 +1,21 @@
 import React from 'react'
+import { Button, Result } from 'antd'
+import { Link } from 'react-router-dom'
 
 const Error404 = () => {
   return (
-    <div className='w-full h-screen bg-[url("https://faustorios.com/wp-content/uploads/2021/01/404-error-not-found-1.png")] bg-center'>Componente404</div>
+    <Result
+      className='bgTransp'
+      status="404"
+      title="404"
+      subTitle="Sorry, the page you visited does not exist."
+      extra={<Link to={'/'}>
+        <Button type="primary">Back Home</Button>
+      </Link>
+      }
+    />
   )
 }
 
 export default Error404
+
