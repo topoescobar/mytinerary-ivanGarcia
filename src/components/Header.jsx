@@ -1,20 +1,14 @@
 import { GlobalOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons'
-import { Anchor, Button, Col, Layout, Menu, Row } from 'antd'
+import { Button, Col, Layout, Menu, Row } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const HeaderComp = () => {
+const HeaderComp = ({navKey, selectKey}) => {
 
-  const [current, setCurrent] = useState('home');
-  const selectKey = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
-  
   const menuItems = [
     {
-      label:  (<Link to={'/'} > Home </Link>),
+      label: (<Link to={'/'} > Home </Link>),
       key: 'home',
       icon: <HomeOutlined />
     },
@@ -40,7 +34,7 @@ const HeaderComp = () => {
             </Col>
             <Col xs={0} sm={0} md={14} lg={14}>
               <div className='containerFlex'>
-                <Menu mode="horizontal" onClick={selectKey} selectedKeys={[current]} items={menuItems} className='navMenu' />
+                <Menu mode="horizontal" onClick={selectKey} selectedKeys={[navKey]} items={menuItems} className='navMenu' />
 
                 <Button className='loginBtn' type='primary' icon={<UserOutlined />} >
                   Login

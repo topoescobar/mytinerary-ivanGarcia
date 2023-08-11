@@ -43,6 +43,7 @@
     background-color: var(--color-dark);
     padding: 1rem;
     border-radius: 2rem;
+    transition: 1s;
 }
 
 .carouselText{

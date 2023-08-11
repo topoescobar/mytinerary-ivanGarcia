@@ -2,7 +2,6 @@ import { Button, Col, Image, Row } from 'antd'
 import React, { useEffect, useState } from 'react'
 import './carousel.css'
 import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
-import { set } from 'lodash'
 
 const CarouselComp = ({ images, title }) => {
 
@@ -12,6 +11,8 @@ const CarouselComp = ({ images, title }) => {
   const [itemsNumber, setItemsNum] = useState([0, 4])
   //array images divided in sub arrays of 4 objects for slides
   const [subArrays, setSubArrays] = useState([])
+  //stop autoplay
+  const [isClicked, setIsClicked] = useState(false)
 
   const [initialItem, finalItem] = itemsNumber
   const subArraySize = 4
@@ -26,15 +27,15 @@ const CarouselComp = ({ images, title }) => {
 
   //autoplay
   useEffect(() => {
-    let intervalID = setInterval(() => {
-      goNext()
-    }, 2000)
-    
-    return () => {      
-      clearInterval(intervalID)
+    if (!isClicked) {
+      let intervalID = setInterval(() => {
+        goNext()
+      }, 2000)
+      return () => {      
+        clearInterval(intervalID)
+      }
     }
-
-  }, [itemsNumber])
+  }, [currentIndex])
 
   //ARROW buttons: changes the slide index and the selection of the 4 corresponding pictures numbers
   const goNext = () => {
@@ -57,20 +58,23 @@ const CarouselComp = ({ images, title }) => {
     }
   }
 
-  console.log('currentIndex', currentIndex)
-
   //BULLET buttons fn: changes slide index and picture numbers 
   const changeSlide = (indx) => {
     setItemsNum([subArraySize * indx - subArraySize, subArraySize * indx])
     setCurrentIndex(indx)
   }
 
+  const handleClick = () => {
+    setIsClicked(true)
+  }
+
+
   return (
     <div className='carouselContent'>
       <h3 className='carouselTitle'>{title}</h3>
       <div className='containerFlex'>
 
-        <LeftCircleFilled onClick={goPrev} />
+        <LeftCircleFilled onClick={() => {goPrev(); handleClick()}} />
         <div className='gridContainer'>
           { // show slide (4 pictures)
             images.slice(initialItem, finalItem).map((img) => {
@@ -83,7 +87,7 @@ const CarouselComp = ({ images, title }) => {
             })
           }
         </div>
-        <RightCircleFilled onClick={goNext} />
+        <RightCircleFilled onClick={() => {goNext(); handleClick()}}/>
 
       </div>
 
@@ -109,7 +113,7 @@ const CarouselComp = ({ images, title }) => {
                     type='primary'
                     shape='dashed'
                     size='middle'
-                    onClick={() => changeSlide(index + 1)}
+                    onClick={() => {changeSlide(index + 1); handleClick()}}
                   >
                     {index + 1}
                   </Button>
