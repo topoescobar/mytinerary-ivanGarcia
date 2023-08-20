@@ -31,7 +31,7 @@ const CarouselComp = ({ images, title }) => {
       let intervalID = setInterval(() => {
         goNext()
       }, 2000)
-      return () => {      
+      return () => {
         clearInterval(intervalID)
       }
     }
@@ -71,10 +71,10 @@ const CarouselComp = ({ images, title }) => {
 
   return (
     <div className='carouselContent'>
-      <h3 className='carouselTitle'>{title}</h3>
+      <h3 className='titleSecondary'>{title}</h3>
       <div className='containerFlex'>
 
-        <LeftCircleFilled onClick={() => {goPrev(); handleClick()}} />
+        <LeftCircleFilled onClick={() => { goPrev(); handleClick() }} />
         <div className='gridContainer'>
           { // show slide (4 pictures)
             images.slice(initialItem, finalItem).map((img) => {
@@ -87,7 +87,7 @@ const CarouselComp = ({ images, title }) => {
             })
           }
         </div>
-        <RightCircleFilled onClick={() => {goNext(); handleClick()}}/>
+        <RightCircleFilled onClick={() => { goNext(); handleClick() }} />
 
       </div>
 
@@ -113,7 +113,7 @@ const CarouselComp = ({ images, title }) => {
                     type='primary'
                     shape='dashed'
                     size='middle'
-                    onClick={() => {changeSlide(index + 1); handleClick()}}
+                    onClick={() => { changeSlide(index + 1); handleClick() }}
                   >
                     {index + 1}
                   </Button>

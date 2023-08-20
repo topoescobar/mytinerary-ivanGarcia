@@ -6,7 +6,16 @@ h1 {
     font-family: backsoda;
 }
 
-.header{
+.titleSecondary {
+    color: antiquewhite;
+    text-align: center;
+    font-size: 1.7rem;
+    font-style: italic;
+    font-weight: 600;
+}
+
+
+.header {
     height: auto;
 }
 
@@ -16,7 +25,7 @@ h1 {
     justify-content: center;
 }
 
-.bgTransp{
+.bgTransp {
     font-weight: 600;
     color: var(--color-primary);
     background-color: var(--color-bgTransp);
@@ -45,7 +54,7 @@ h1 {
 
 }
 
-.navMenu{
+.navMenu {
     width: 13rem;
 }
 
@@ -56,7 +65,7 @@ h1 {
 .ant-btn {
     height: auto;
 }
- 
+
 .loginBtn {
     display: flex;
     align-items: center;
@@ -67,7 +76,7 @@ h1 {
     height: 2rem;
 }
 
-.ant-result{
+.ant-result {
     color: azure;
-font-size: large;
+    font-size: large;
 }

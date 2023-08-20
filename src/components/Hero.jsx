@@ -1,14 +1,13 @@
 import { Button, Col, Layout, Row } from "antd"
 import React from "react"
-import "./card.css"
+import "./hero.css"
 import { Link, useOutletContext } from 'react-router-dom'
 
-const Card = () => {
+const Hero = () => {
 
   const columnSpacing = { xs: 0, sm: 4, md: 8 }
   const rowSpacing = { xs: 1, sm: 1, md: 6 }
   const [navKey, setNavKey] = useOutletContext()
-  console.log('navkey card', navKey);
 
   return (
     <Layout className="containerFlex">
@@ -37,4 +36,4 @@ const Card = () => {
   )
 }
 
-export default Card
+export default Hero

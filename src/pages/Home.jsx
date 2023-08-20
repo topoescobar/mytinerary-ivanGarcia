@@ -1,5 +1,5 @@
 import React from "react"
-import Card from "../components/Card"
+import Hero from "../components/Hero"
 import CarouselComp from "../components/Carousel"
 import HeaderAndFooter from "../layouts/MainLayout"
 import Layout from 'antd/es/layout/layout'
@@ -29,7 +29,7 @@ const HomePage = () => {
   return (
     <>
         <Layout >
-          <Card />
+          <Hero />
           <CarouselComp images={places} title={carouselName}/>
         </Layout>
     </>
