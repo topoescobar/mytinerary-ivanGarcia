@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { Avatar, Button, Card, Col, Input, Layout, Row, Skeleton, Spin } from 'antd'
-import { EditOutlined, EllipsisOutlined, PlusCircleOutlined, SettingOutlined } from '@ant-design/icons'
+import { EditOutlined, EllipsisOutlined, PlusCircleOutlined, SearchOutlined, SettingOutlined } from '@ant-design/icons'
 import './cities.css'
 import { Content } from 'antd/es/layout/layout'
 import Cards from '../components/Cards'
@@ -21,7 +21,8 @@ const Cities = () => {
   const rowSpacing = { xs: 5, sm: 5, md: 6 }
   const { Search } = Input
 
-  const searchFn = (searchValue, array) => {
+  const searchFn = (event, array) => {
+    let searchValue = event.target.value
     console.log(searchValue)
     console.log(array)
     let filteredArray = array.filter(place =>
@@ -46,10 +47,11 @@ const Cities = () => {
           <div className='containerFlex citiesContainer'>
             <h2 className='titleSecondary'>Choose your ideal destination </h2>
 
-            <Search
+            <Input
+              prefix={<SearchOutlined style={{ fontSize: '16px' }} />}
               className='inputSearch'
               placeholder='City name'
-              onSearch={(val) => searchFn(val, places)}
+              onChange={(val) => searchFn(val, places)}
             />
 
             <Skeleton loading={loading}>
