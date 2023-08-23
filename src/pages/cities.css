@@ -1,5 +1,11 @@
 .citiesContainer {
   margin: 1.5rem 6rem;
+  flex-direction: column;
+}
+
+.inputSearch {
+  margin: 1rem;
+  width: 50%;
 }
 
 @media screen and (max-width: 767px) {
