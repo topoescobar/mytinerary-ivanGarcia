@@ -34,9 +34,8 @@ const Cities = () => {
   useEffect(() => {
     setTimeout(() => { // simulates 500ms async loading
       axios('http://localhost:3001/api/events/')
-        .then(res => setPlaces(res.data.res))
+        .then(response => setPlaces(response.data.res))
         .then(() => setLoading(false))
-      console.log('fetching...')
     }, 500)
   }, [])
 
