@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { Avatar, Button, Card, Col, Layout, Row, Skeleton, Spin } from 'antd'
+import { Avatar, Button, Card, Col, Input, Layout, Row, Skeleton, Spin } from 'antd'
 import { EditOutlined, EllipsisOutlined, PlusCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import './cities.css'
 import { Content } from 'antd/es/layout/layout'
+import Cards from '../components/Cards'
 
 const { Meta } = Card
 
@@ -13,46 +14,53 @@ const Cities = () => {
   const params = useParams()
   const [places, setPlaces] = useState([])
   const [loading, setLoading] = useState(true)
+  const [filteredPlaces, setfilteredPlaces] = useState([])
+  const [searchValue, setSearchValue] = useState('')
 
   const columnSpacing = { xs: 0, sm: 5, md: 8 }
   const rowSpacing = { xs: 5, sm: 5, md: 6 }
+  const { Search } = Input
+
+  const searchFn = (searchValue, array) => {
+    console.log(searchValue)
+    console.log(array)
+    let filteredArray = array.filter(place =>
+      place.title.toLowerCase().startsWith(searchValue.toLowerCase())
+    )
+    setfilteredPlaces(filteredArray)
+  }
 
   useEffect(() => {
-    setTimeout(() => {
+    setTimeout(() => { // simulates 500ms async loading
       axios('http://localhost:3001/api/events/')
         .then(res => setPlaces(res.data.res))
         .then(() => setLoading(false))
-    }, 1000)
+      console.log('fetching...')
+    }, 500)
   }, [])
 
   return (
     <>
       <Layout>
         <Content className='bgTransp'>
-          <div className='citiesContainer'>
+          <div className='containerFlex citiesContainer'>
             <h2 className='titleSecondary'>Choose your ideal destination </h2>
+
+            <Search
+              className='inputSearch'
+              placeholder='City name'
+              onSearch={(val) => searchFn(val, places)}
+            />
+
             <Skeleton loading={loading}>
               <Row justify={'space-evenly'} gutter={[columnSpacing, rowSpacing]}>
                 {
-                  places.map(city =>
-                    <Col xs={24} sm={12} md={8}>
-                      <Card
-                        key={city._id}
-                        loading={loading}
-                        cover={<img alt={city.alt} src={city.imgUrl} />}
-                        actions={[
-                          <EllipsisOutlined key='ellipsis' />,
-                          <PlusCircleOutlined key='plus' />
-                        ]}
-                      >
-
-                        <Meta
-                          title={city.title}
-                        // description={city.description}
-                        />
-                      </Card>
-                    </Col>
-                  )
+                  filteredPlaces.length > 0 ?
+                    filteredPlaces.map(city =>
+                      <Cards key={city._id} city={city} />
+                    ) : places.map(city =>
+                      <Cards key={city._id} city={city} />
+                    )
                 }
 
               </Row>
