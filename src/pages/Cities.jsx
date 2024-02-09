@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Avatar, Button, Card, Col, Input, Layout, Row, Skeleton, Spin } from 'antd'
 import { EditOutlined, EllipsisOutlined, PlusCircleOutlined, SearchOutlined, SettingOutlined } from '@ant-design/icons'
 import './cities.css'
 import { Content } from 'antd/es/layout/layout'
 import Cards from '../components/Cards'
-import {getAllPlaces} from '../services/placesQueries.js'
+import { getAllPlaces, getByQuery } from '../services/getAllPlaces.js'
 
 const { Meta } = Card
 
@@ -31,12 +31,18 @@ const Cities = () => {
     setfilteredPlaces(filteredArray)
   }
 
+  const handleEnter = (ev) => {
+    let search = ev.target.value
+    console.log('search', search)
+    getByQuery(`/search?title=${search}`).then(setPlaces)
+  }
+
   useEffect(() => {
     setTimeout(() => { // simulates 500ms async loading
-      getAllPlaces() // funcion asincrona evielve promesa sin resolver si no se usa el .then
-      //.then(array => setPlaces(array)) // promesa resuelta
-      .then(setPlaces) // forma alternativa simplificada
-      .then(() => setLoading(false))
+      getAllPlaces() // funcion asincrona devuelve promesa sin resolver si no se usa el .then
+        //.then(array => setPlaces(array)) // promesa resuelta
+        .then(setPlaces) // forma alternativa simplificada
+        .then(() => setLoading(false))
     }, 500)
   }, [])
 
@@ -50,8 +56,16 @@ const Cities = () => {
             <Input
               prefix={<SearchOutlined style={{ fontSize: '16px' }} />}
               className='inputSearch'
-              placeholder='City name'
+              placeholder='Search in frontend'
               onChange={(val) => searchFn(val, places)}
+            />
+
+            <Input
+              prefix={<SearchOutlined style={{ fontSize: '16px' }} />}
+              className='inputSearch'
+              placeholder='Search in backend, press enter'
+              //ref={inputSearch} //evita re-renderizado mientras escribe
+              onPressEnter={(val) => handleEnter(val)}
             />
 
             <Skeleton loading={loading}>
