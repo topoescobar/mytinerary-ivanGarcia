@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { Avatar, Button, Card, Col, Input, Layout, Row, Skeleton, Spin } from 'antd'
 import { EditOutlined, EllipsisOutlined, PlusCircleOutlined, SearchOutlined, SettingOutlined } from '@ant-design/icons'
 import './cities.css'
 import { Content } from 'antd/es/layout/layout'
 import Cards from '../components/Cards'
+import {getAllPlaces} from '../services/placesQueries.js'
 
 const { Meta } = Card
 
@@ -33,11 +33,10 @@ const Cities = () => {
 
   useEffect(() => {
     setTimeout(() => { // simulates 500ms async loading
-      axios('http://localhost:3001/api/places/')
-        .then(response => 
-           setPlaces(response.data.placesDB)
-          )
-        .then(() => setLoading(false))
+      getAllPlaces() // funcion asincrona evielve promesa sin resolver si no se usa el .then
+      //.then(array => setPlaces(array)) // promesa resuelta
+      .then(setPlaces) // forma alternativa simplificada
+      .then(() => setLoading(false))
     }, 500)
   }, [])
 
