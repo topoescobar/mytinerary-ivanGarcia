@@ -5,7 +5,9 @@ import { EditOutlined, EllipsisOutlined, PlusCircleOutlined, SearchOutlined, Set
 import './cities.css'
 import { Content } from 'antd/es/layout/layout'
 import Cards from '../components/Cards'
-import { getAllPlaces, getByQuery } from '../services/getAllPlaces.js'
+import { getAllPlaces } from '../services/getAllPlaces.js'
+import {getByQuery} from '../services/getByQuery.js'
+import ButtonGroup from 'antd/es/button/button-group.js'
 
 const { Meta } = Card
 
@@ -16,10 +18,20 @@ const Cities = () => {
   const [loading, setLoading] = useState(true)
   const [filteredPlaces, setfilteredPlaces] = useState([])
   const [searchValue, setSearchValue] = useState('')
+  const inputSearch = useRef(null)
 
   const columnSpacing = { xs: 0, sm: 5, md: 8 }
   const rowSpacing = { xs: 5, sm: 5, md: 6 }
   const { Search } = Input
+
+  useEffect(() => {
+    setTimeout(() => { // simulates 500ms async loading
+      getAllPlaces() // funcion asincrona devuelve promesa sin resolver si no se usa el .then
+        //.then(array => setPlaces(array)) // promesa resuelta
+        .then(setPlaces) // forma alternativa simplificada
+        .then(() => setLoading(false))
+    }, 500)
+  }, [])
 
   const searchFn = (event, array) => {
     let searchValue = event.target.value
@@ -31,20 +43,20 @@ const Cities = () => {
     setfilteredPlaces(filteredArray)
   }
 
-  const handleEnter = (ev) => {
+/*   const handleEnter = (ev) => {
     let search = ev.target.value
     console.log('search', search)
-    getByQuery(`/search?title=${search}`).then(setPlaces)
+    //getByQuery(`?title=${search}`)
+    getByQuery().then(res=> console.log(".then response",res))
+  } */
+
+  const handleClick = () => {
+    let search = inputSearch.current.value
+    console.log("search inpt",search )
+    let query = "?title="
+    getByQuery(query+search).then(setPlaces)
   }
 
-  useEffect(() => {
-    setTimeout(() => { // simulates 500ms async loading
-      getAllPlaces() // funcion asincrona devuelve promesa sin resolver si no se usa el .then
-        //.then(array => setPlaces(array)) // promesa resuelta
-        .then(setPlaces) // forma alternativa simplificada
-        .then(() => setLoading(false))
-    }, 500)
-  }, [])
 
   return (
     <>
@@ -60,14 +72,17 @@ const Cities = () => {
               onChange={(val) => searchFn(val, places)}
             />
 
-            <Input
-              prefix={<SearchOutlined style={{ fontSize: '16px' }} />}
-              className='inputSearch'
-              placeholder='Search in backend, press enter'
-              //ref={inputSearch} //evita re-renderizado mientras escribe
-              onPressEnter={(val) => handleEnter(val)}
+            <input 
+            className='inputSearch'
+            ref={inputSearch} //evita re-renderizado mientras escribe
+            placeholder='Search in backend'
+            //onPressEnter={(val) => handleEnter(val)}
             />
-
+            <button
+            onClick={handleClick}
+            >Buscar</button>
+     
+        
             <Skeleton loading={loading}>
               <Row justify={'space-evenly'} gutter={[columnSpacing, rowSpacing]}>
                 {

@@ -14,18 +14,6 @@ export const getAllPlaces = async () => {
     }
 }
 
-export const getByQuery = async (queryParam) => {
-    try {
-        const response = await axios(URL_DB+queryParam) //para realizar busquedas en backend, x ej usando la funcion searchPlace en places
-        console.log(response.data.placesDB)
-        return response.data.placesDB
-    } catch (error) {
-        console.log(error)
-        return []
-    }
-}
-
-
 /* 
 axios('http://localhost:3001/api/places/')
 .then(response => 
