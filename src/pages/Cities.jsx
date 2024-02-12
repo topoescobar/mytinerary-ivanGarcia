@@ -5,9 +5,7 @@ import { EditOutlined, EllipsisOutlined, PlusCircleOutlined, SearchOutlined, Set
 import './cities.css'
 import { Content } from 'antd/es/layout/layout'
 import Cards from '../components/Cards'
-import { getAllPlaces } from '../services/getAllPlaces.js'
-import {getByQuery} from '../services/getByQuery.js'
-import ButtonGroup from 'antd/es/button/button-group.js'
+import { getAllPlaces, getByQuery } from '../services/placesQueries.js'
 
 const { Meta } = Card
 
@@ -37,7 +35,7 @@ const Cities = () => {
     let searchValue = event.target.value
     console.log(searchValue)
     console.log(array)
-    
+
      let filteredArray = array.filter(place =>
        place.title.toLowerCase().startsWith(searchValue.toLowerCase())
      )
