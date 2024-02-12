@@ -37,25 +37,18 @@ const Cities = () => {
     let searchValue = event.target.value
     console.log(searchValue)
     console.log(array)
-    let filteredArray = array.filter(place =>
-      place.title.toLowerCase().startsWith(searchValue.toLowerCase())
-    )
-    setfilteredPlaces(filteredArray)
+    
+     let filteredArray = array.filter(place =>
+       place.title.toLowerCase().startsWith(searchValue.toLowerCase())
+     )
+     setfilteredPlaces(filteredArray)
   }
 
-/*   const handleEnter = (ev) => {
+   const handleEnter = (ev) => {
     let search = ev.target.value
     console.log('search', search)
-    //getByQuery(`?title=${search}`)
-    getByQuery().then(res=> console.log(".then response",res))
-  } */
-
-  const handleClick = () => {
-    let search = inputSearch.current.value
-    console.log("search inpt",search )
-    let query = "?title="
-    getByQuery(query+search).then(setPlaces)
-  }
+    getByQuery("?title="+search).then(setfilteredPlaces)
+  } 
 
 
   return (
@@ -74,13 +67,10 @@ const Cities = () => {
 
             <input 
             className='inputSearch'
-            ref={inputSearch} //evita re-renderizado mientras escribe
+            //ref={inputSearch} //evita re-renderizado mientras escribe
             placeholder='Search in backend'
-            //onPressEnter={(val) => handleEnter(val)}
+            onKeyDown={(val) => handleEnter(val)}
             />
-            <button
-            onClick={handleClick}
-            >Buscar</button>
      
         
             <Skeleton loading={loading}>
